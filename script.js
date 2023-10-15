@@ -11,8 +11,8 @@ const textBox = document.getElementById("text-box");
 // Dark mode styles
 
 function darkMode() {
-  nav.style.backgroundColor = "rgb(0 0 0/50%)";
-  textBox.style.backgroundColor = "rgb(255 255 255 /10%)";
+  nav.style.backgroundColor = "rgb(0 0 0 / 50%)";
+  textBox.style.backgroundColor = "rgb(0 0 0/50%)";
   textBox.style.color = "white";
   // changing nav elements
   toggleIcon.children[0].textContent = "Dark mode";
@@ -26,9 +26,9 @@ function darkMode() {
 
 // Light Mode Styles
 function lightMode() {
-  nav.style.backgroundColor = "rgb(255 255 255 /10%)";
+  nav.style.backgroundColor = "rgb(255 255 255 / 10%)";
 
-  textBox.style.backgroundColor = "rgb(0 0 0/50%)";
+  textBox.style.backgroundColor = "rgb(255 255 255 / 10%)";
   textBox.style.color = " var(--on-primary)";
   // changing nav elements
   toggleIcon.children[0].textContent = "Light mode";
@@ -62,6 +62,10 @@ const currentTheme = localStorage.getItem("theme");
 // get data from localStorage to set the theme
 if (currentTheme) {
   document.documentElement.setAttribute("data-theme", currentTheme);
-} else {
-  document.documentElement.setAttribute("data-theme", "light");
+  if (currentTheme === "dark") {
+    toggleSwitch.checked = true;
+    darkMode();
+  } else if (currentTheme === "ligth") {
+    lightMode();
+  }
 }
