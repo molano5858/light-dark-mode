@@ -45,12 +45,23 @@ function switchTheme(event) {
   console.log("se ejecuto");
   if (event.target.checked) {
     document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark");
     darkMode();
   } else {
     document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light");
     lightMode();
   }
 }
 
 // Switch´s listener
 toggleSwitch.addEventListener("change", switchTheme);
+
+// check current localStorage theme
+const currentTheme = localStorage.getItem("theme");
+// get data from localStorage to set the theme
+if (currentTheme) {
+  document.documentElement.setAttribute("data-theme", currentTheme);
+} else {
+  document.documentElement.setAttribute("data-theme", "light");
+}
